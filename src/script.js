@@ -1,107 +1,59 @@
-import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import { Timer } from 'three/addons/misc/Timer.js'
-import GUI from 'lil-gui'
+import * as THREE from "three";
+import {OrbitControls, Timer} from "three/addons";
+import * as GUI from "lil-gui"
 
-/**
- * Base
- */
-// Debug
-const gui = new GUI()
 
-// Canvas
-const canvas = document.querySelector('canvas.webgl')
+//SCENE
+const scene = new THREE.Scene();
 
-// Scene
-const scene = new THREE.Scene()
+//CAMERA
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
+scene.add(camera);
+camera.position.set(4, 2, 5)
 
-/**
- * House
- */
-// Temporary sphere
-const sphere = new THREE.Mesh(
-    new THREE.SphereGeometry(1, 32, 32),
+//RENDERER
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
+document.body.appendChild(renderer.domElement);
+
+//CONTROLS
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.update();
+
+//LIGHT
+const ambientLight = new THREE.AmbientLight("#ffffff", 0.5);
+scene.add(ambientLight);
+
+const directionalLight = new THREE.DirectionalLight("#ffffff", 1.5);
+directionalLight.position.set(3,2,-8);
+scene.add(directionalLight);
+
+//MESH
+const mesh = new THREE.Mesh(
+    new THREE.SphereGeometry(1,32,32),
     new THREE.MeshStandardMaterial({ roughness: 0.7 })
 )
-scene.add(sphere)
+scene.add(mesh);
 
-/**
- * Lights
- */
-// Ambient light
-const ambientLight = new THREE.AmbientLight('#ffffff', 0.5)
-scene.add(ambientLight)
 
-// Directional light
-const directionalLight = new THREE.DirectionalLight('#ffffff', 1.5)
-directionalLight.position.set(3, 2, -8)
-scene.add(directionalLight)
-
-/**
- * Sizes
- */
-const sizes = {
-    width: window.innerWidth,
-    height: window.innerHeight
+//RESIZE
+const onResize = () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
 }
+window.addEventListener("resize", onResize)
 
-window.addEventListener('resize', () =>
-{
-    // Update sizes
-    sizes.width = window.innerWidth
-    sizes.height = window.innerHeight
+//ANIMATION
+const timer = new Timer();
+const animation = () => {
+    window.requestAnimationFrame(animation);
+    timer.update();
+    controls.update();
 
-    // Update camera
-    camera.aspect = sizes.width / sizes.height
-    camera.updateProjectionMatrix()
-
-    // Update renderer
-    renderer.setSize(sizes.width, sizes.height)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-})
-
-/**
- * Camera
- */
-// Base camera
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-camera.position.x = 4
-camera.position.y = 2
-camera.position.z = 5
-scene.add(camera)
-
-// Controls
-const controls = new OrbitControls(camera, canvas)
-controls.enableDamping = true
-
-/**
- * Renderer
- */
-const renderer = new THREE.WebGLRenderer({
-    canvas: canvas
-})
-renderer.setSize(sizes.width, sizes.height)
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-
-/**
- * Animate
- */
-const timer = new Timer()
-
-const tick = () =>
-{
-    // Timer
-    timer.update()
-    const elapsedTime = timer.getElapsed()
-
-    // Update controls
-    controls.update()
-
-    // Render
-    renderer.render(scene, camera)
-
-    // Call tick again on the next frame
-    window.requestAnimationFrame(tick)
+    const elapsedTime = timer.getElapsed();
+    renderer.render(scene, camera);
 }
-
-tick()
+animation();
