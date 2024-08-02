@@ -42,7 +42,25 @@ scene.add(floor);
 floor.rotation.x = Math.PI * 0.5;
 
 //HOUSE
+const house = new THREE.Group();
+scene.add(house);
 
+const walls = new THREE.Mesh(
+    new THREE.BoxGeometry(4, 2.5, 5),
+    new THREE.MeshStandardMaterial()
+)
+walls.position.y = 1.25;
+house.add(walls);
+
+//ROOFS
+const roof = new THREE.Mesh(
+    new THREE.ConeGeometry(4, 1.5, 4),
+    new THREE.MeshStandardMaterial()
+)
+house.add(roof);
+roof.position.y = walls.geometry.parameters.height + 0.75;
+roof.rotation.y = Math.PI *0.25;
+console.log()
 
 //RESIZE
 const onResize = () => {
