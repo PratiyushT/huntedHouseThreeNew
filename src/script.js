@@ -2,7 +2,7 @@ import * as THREE from "three";
 import {OrbitControls, Timer} from "three/addons";
 import * as GUI from "lil-gui"
 
-//Code Imports
+//STRUCTURE IMPORTS
 import house from "./house.js"
 
 
