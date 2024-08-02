@@ -5,11 +5,11 @@ const loadingManager = new LoadingManager();
 loadingManager.onStart = (texture) => {
     console.log("Started Loading: ", texture)
 }
-loadingManager.onLoad = (texture) => {
-    console.log("Loaded: ", texture)
+loadingManager.onLoad = () => {
+    console.log("Loaded")
 }
-loadingManager.onError = () => {
-    console.log("Error Loading")
+loadingManager.onError = (texture) => {
+    console.log("Error Loading: ", texture)
 }
 
 const textureLoader = new TextureLoader(loadingManager);
