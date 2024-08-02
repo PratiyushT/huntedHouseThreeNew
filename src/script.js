@@ -2,8 +2,10 @@ import * as THREE from "three";
 import {OrbitControls, Timer} from "three/addons";
 import * as GUI from "lil-gui"
 
-//STRUCTURE IMPORTS
-import house from "./house.js"
+//OTHER IMPORTS
+import house from "./code/house.js"
+import {directionalLight, ambientLight} from "./code/lights.js"
+import graves from "./code/graves.js";
 
 
 //SCENE
@@ -30,12 +32,7 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.update();
 
 //LIGHT
-const ambientLight = new THREE.AmbientLight("#ffffff", 0.5);
-scene.add(ambientLight);
-
-const directionalLight = new THREE.DirectionalLight("#ffffff", 1.5);
-directionalLight.position.set(3, 2, -8);
-scene.add(directionalLight);
+scene.add(directionalLight, ambientLight);
 
 //FLOOR
 const floor = new THREE.Mesh(
@@ -47,6 +44,9 @@ floor.rotation.x = Math.PI * 0.5;
 
 //HOUSE
 scene.add(house)
+
+//Graves
+scene.add(graves);
 
 //RESIZE
 const onResize = () => {
