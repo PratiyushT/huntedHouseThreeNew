@@ -2,9 +2,13 @@ import * as THREE from "three";
 import {OrbitControls, Timer} from "three/addons";
 import * as GUI from "lil-gui"
 
-
 //SCENE
 const scene = new THREE.Scene();
+
+//AXIS-HELPER
+const axisHelper = new THREE.AxesHelper(4);
+axisHelper.setColors("blue", "green", "red")
+scene.add(axisHelper);
 
 //CAMERA
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
@@ -26,15 +30,18 @@ const ambientLight = new THREE.AmbientLight("#ffffff", 0.5);
 scene.add(ambientLight);
 
 const directionalLight = new THREE.DirectionalLight("#ffffff", 1.5);
-directionalLight.position.set(3,2,-8);
+directionalLight.position.set(3, 2, -8);
 scene.add(directionalLight);
 
-//MESH
-const mesh = new THREE.Mesh(
-    new THREE.SphereGeometry(1,32,32),
-    new THREE.MeshStandardMaterial({ roughness: 0.7 })
+//FLOOR
+const floor = new THREE.Mesh(
+    new THREE.PlaneGeometry(20, 20),
+    new THREE.MeshStandardMaterial({side: THREE.DoubleSide})
 )
-scene.add(mesh);
+scene.add(floor);
+floor.rotation.x = Math.PI * 0.5;
+
+//HOUSE
 
 
 //RESIZE
@@ -55,5 +62,7 @@ const animation = () => {
 
     const elapsedTime = timer.getElapsed();
     renderer.render(scene, camera);
+    timer.dispose();
 }
+axisHelper.dispose();
 animation();
