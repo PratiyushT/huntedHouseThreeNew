@@ -44,6 +44,9 @@ scene.add(MODULES.graves);
 //Ghosts
 scene.add(MODULES.ghost1, MODULES.ghost2, MODULES.ghost3)
 
+//Sky
+scene.add(MODULES.sky);
+
 //RESIZE
 const onResize = () => {
     camera.aspect = window.innerWidth / window.innerHeight;

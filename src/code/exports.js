@@ -3,7 +3,7 @@ import {directionalLight, ambientLight} from "./lights.js"
 import graves from "./graves.js";
 import floor from "./floor.js"
 import {ghost3, ghost1, ghost2,animateGhost} from "./ghosts.js";
-
+import sky from "./sky.js";
 
 export {
     house,
@@ -15,4 +15,5 @@ export {
     ghost2,
     ghost3,
     animateGhost,
+    sky,
 }
