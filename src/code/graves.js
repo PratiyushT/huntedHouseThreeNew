@@ -42,4 +42,10 @@ for (let i = 0; i < 30; i++) {
     graves.add(grave);
 }
 
+for(const grave of graves.children)
+{
+    grave.castShadow = true
+    grave.receiveShadow = true
+}
+
 export default graves;

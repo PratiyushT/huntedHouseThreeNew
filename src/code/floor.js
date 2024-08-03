@@ -43,6 +43,7 @@ const floor = new Mesh(
 )
 floor.rotation.x = Math.PI * 0.5;
 floor.material.side = BackSide
+floor.receiveShadow = true
 
 const floorGUI = gui.addFolder("Floor")
 floorGUI.add(floor.material, 'displacementScale').min(0).max(1).step(0.001).name('floorDisplacementScale')

@@ -175,6 +175,13 @@ const bush4 = new Mesh(bushGeometry, bushMaterial)
 bush4.scale.set(0.15, 0.15, 0.15)
 bush4.position.set(-1, 0.05, 2.6)
 
+/*
+Shadows
+*/
+walls.castShadow = true
+walls.receiveShadow = true
+roof.castShadow = true
+
 house.add(bush1, bush2, bush3, bush4);
 
 

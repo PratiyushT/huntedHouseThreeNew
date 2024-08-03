@@ -5,6 +5,11 @@ const ghost1 = new PointLight('#8800ff', 6)
 const ghost2 = new PointLight('#ff0088', 6)
 const ghost3 = new PointLight('#ff0000', 6)
 
+//Shadows
+ghost1.castShadow = true;
+ghost2.castShadow = true;
+ghost3.castShadow = true;
+
 export function animateGhost(elapsedTime) {
     const ghost1Angle = elapsedTime * 0.5
     ghost1.position.x = Math.cos(ghost1Angle) * 4;
