@@ -27,6 +27,7 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
 //CONTROLS
 const controls = new OrbitControls(camera, renderer.domElement);
+controls.minDistance = 4.5;
 controls.update();
 
 //LIGHT
@@ -46,6 +47,9 @@ scene.add(MODULES.ghost1, MODULES.ghost2, MODULES.ghost3)
 
 //Sky
 scene.add(MODULES.sky);
+
+//Fog
+scene.fog=MODULES.fog;
 
 //RESIZE
 const onResize = () => {

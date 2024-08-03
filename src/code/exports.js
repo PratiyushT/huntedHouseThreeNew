@@ -4,6 +4,7 @@ import graves from "./graves.js";
 import floor from "./floor.js"
 import {ghost3, ghost1, ghost2,animateGhost} from "./ghosts.js";
 import sky from "./sky.js";
+import fog from "./fog.js";
 
 export {
     house,
@@ -16,4 +17,5 @@ export {
     ghost3,
     animateGhost,
     sky,
+    fog,
 }
