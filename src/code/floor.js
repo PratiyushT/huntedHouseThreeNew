@@ -2,7 +2,7 @@ import {Mesh, PlaneGeometry, MeshStandardMaterial, BackSide, SRGBColorSpace, Rep
 import textureLoader from "./textures.js";
 import gui from "./gui.js";
 //Textures
-const URL_START = "./coast_sand_rocks_02_1k/textures/coast_sand_rocks_02_"
+const URL_START = "./floor/brown_mud_dry_1k/textures/brown_mud_dry_"
 const floorAlphaTexture = textureLoader.load("./floor/alpha.jpg")
 const floorColorTexture = textureLoader.load(URL_START + "diff_1k.jpg")
 floorColorTexture.colorSpace = SRGBColorSpace;
@@ -21,10 +21,10 @@ floorARMTexture.wrapT = RepeatWrapping
 floorNormalTexture.wrapT = RepeatWrapping
 floorDisplacementTexture.wrapT = RepeatWrapping
 
-floorColorTexture.repeat.set(11, 11)
-floorARMTexture.repeat.set(11, 11)
-floorNormalTexture.repeat.set(11, 11)
-floorDisplacementTexture.repeat.set(11, 11)
+floorColorTexture.repeat.set(3, 3)
+floorARMTexture.repeat.set(3, 3)
+floorNormalTexture.repeat.set(3, 3)
+floorDisplacementTexture.repeat.set(3, 3)
 
 const floor = new Mesh(
     new PlaneGeometry(20, 20, 100, 100),

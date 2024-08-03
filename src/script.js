@@ -39,6 +39,9 @@ scene.add(MODULES.house)
 //Graves
 scene.add(MODULES.graves);
 
+//Ghosts
+scene.add(MODULES.ghost1, MODULES.ghost2, MODULES.ghost3)
+
 //RESIZE
 const onResize = () => {
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -53,9 +56,11 @@ const timer = new Timer();
 const animation = () => {
     window.requestAnimationFrame(animation);
     timer.update();
+
     controls.update();
 
     const elapsedTime = timer.getElapsed();
+    MODULES.animateGhost(elapsedTime);
     renderer.render(scene, camera);
     timer.dispose();
 }

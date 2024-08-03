@@ -14,4 +14,5 @@ loadingManager.onError = (texture) => {
 
 const textureLoader = new TextureLoader(loadingManager);
 
+
 export default textureLoader;
