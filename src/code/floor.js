@@ -4,12 +4,12 @@ import gui from "./gui.js";
 //Textures
 const URL_START = "./floor/brown_mud_dry_1k/textures/brown_mud_dry_"
 const floorAlphaTexture = textureLoader.load("./floor/alpha.jpg")
-const floorColorTexture = textureLoader.load(URL_START + "diff_1k.jpg")
+const floorColorTexture = textureLoader.load(URL_START + "diff_1k.webp")
 floorColorTexture.colorSpace = SRGBColorSpace;
 //floorARMTexture file Contains Three Textures
-const floorARMTexture = textureLoader.load(URL_START + "arm_1k.jpg")
-const floorNormalTexture = textureLoader.load(URL_START + "nor_gl_1k.jpg")
-const floorDisplacementTexture = textureLoader.load(URL_START + "disp_1k.jpg")
+const floorARMTexture = textureLoader.load(URL_START + "arm_1k.webp")
+const floorNormalTexture = textureLoader.load(URL_START + "nor_gl_1k.webp")
+const floorDisplacementTexture = textureLoader.load(URL_START + "disp_1k.webp")
 
 floorColorTexture.wrapS = RepeatWrapping
 floorARMTexture.wrapS = RepeatWrapping
